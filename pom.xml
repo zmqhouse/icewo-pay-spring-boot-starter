@@ -13,7 +13,7 @@
     <groupId>com.icewo</groupId>
     <artifactId>icewo-pay-spring-boot-starter</artifactId>
     <version>1.0.0</version>
-    <description>支付相关</description>
+    <description>支付</description>
 
     <properties>
         <java.version>1.8</java.version>
