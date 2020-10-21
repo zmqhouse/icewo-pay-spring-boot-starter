@@ -3,8 +3,8 @@ package com.icewo.config;
 import com.icewo.core.WxAppPayCore;
 import com.icewo.core.WxPaymentChange;
 import com.icewo.core.WxSmallPayCore;
+import com.icewo.core.WxSmallUserInfoCore;
 import com.icewo.properties.WxPayProperties;
-import com.icewo.response.WxUserInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -59,13 +59,15 @@ public class WxPayAutoConfiguration implements CommandLineRunner {
         return new WxPaymentChange();
     }
 
+
+
     @Bean
     @Lazy
-    public WxUserInfoVo wxUserInfoVo() throws Exception {
+    public WxSmallUserInfoCore wxSmallUserInfoCore() throws Exception {
         if (wxPayProperties.getWxAppSecret() == null || "".equals(wxPayProperties.getWxAppSecret())) {
             throw new Exception("icewo.wxpay.wx-app-secret为空");
         }
-        return new WxUserInfoVo();
+        return new WxSmallUserInfoCore();
     }
 
     @Override
