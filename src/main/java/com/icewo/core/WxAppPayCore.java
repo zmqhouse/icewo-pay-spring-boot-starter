@@ -133,7 +133,7 @@ public class WxAppPayCore {
      * @param prepayId 预支付交易ID
      * @return
      */
-    public String secondSignature(String prepayId) {
+    public String secondSignature(Long timestamp,String prepayId) {
         SortedMap<Object, Object> responMap = new TreeMap<>();
         String nonceStr = WxPayUtils.CreateNoncestr(); //生成随机字符串
         responMap.put(WxAppPaySecondSignEnum.APP_ID.getValue(), wxPayProperties.getWxAppid());
@@ -141,7 +141,7 @@ public class WxAppPayCore {
         responMap.put(WxAppPaySecondSignEnum.PACKAGE.getValue(), WxAppPaySecondSignEnum.PACKAGE.getDefaults());
         responMap.put(WxAppPaySecondSignEnum.PARTNER_ID.getValue(), wxPayProperties.getWxMchid());
         responMap.put(WxAppPaySecondSignEnum.PREPAY_ID.getValue(), prepayId);
-        responMap.put(WxAppPaySecondSignEnum.TIMESTAMP.getValue(), WxAppPaySecondSignEnum.TIMESTAMP.getDefaults());
+        responMap.put(WxAppPaySecondSignEnum.TIMESTAMP.getValue(), timestamp);
         //二次签名
         String secondSign = WxPayUtils.createSign(UTF, responMap, wxPayProperties.getWxMchkey());
         return secondSign;
