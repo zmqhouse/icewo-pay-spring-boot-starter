@@ -47,7 +47,7 @@ public class WxAppPayCore {
      * @param attach      拓展信息(异步回调attach字段)
      * @return
      */
-    public WxPayResponse generatePrepayment(BigDecimal realAsset, String orderNumber, String ipAddress, String attach) {
+    public WxPayResponse generatePrepayment(BigDecimal realAsset, String orderNumber, String ipAddress, Object attach) {
         //将元转为分,微信要求是分
         String money = WxAmountUtils.changeY2F(realAsset.toString());
         SortedMap<Object, Object> requestMap = new TreeMap<>();

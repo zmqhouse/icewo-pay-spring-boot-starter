@@ -38,7 +38,7 @@ public class WxSmallPayCore {
     private WxPayProperties wxPayProperties;
 
 
-    public WxPayResponse generatePrepayment(String openId, BigDecimal realAsset, String orderNumber, String ipAddress, String attach) {
+    public WxPayResponse generatePrepayment(String openId, BigDecimal realAsset, String orderNumber, String ipAddress, Object attach) {
         //将元转为分,微信金额单位是分
         String money = WxAmountUtils.changeY2F(realAsset.toString());
         SortedMap<Object, Object> responMap = new TreeMap<>();
