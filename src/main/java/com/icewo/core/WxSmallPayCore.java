@@ -32,6 +32,7 @@ public class WxSmallPayCore {
     private static final String ERRCODE = "err_code";
     private static final String ERRCODEDES = "err_code_des";
     private static final String POST = "POST";
+    private static final String ATTACH = "attach";
 
     @Autowired
     private WxPayProperties wxPayProperties;
@@ -90,6 +91,7 @@ public class WxSmallPayCore {
     private WxPayResponse checkReturn(Map<String, Object> result) {
         String returnCode = (String) result.get(RETURNCODE);
         String resultCode = (String) result.get(RESULTCODE);
+        String attach = (String) result.get(ATTACH);
 
         //return_code和result_code都返回 SUCCESS 表示生成预支付信息成功
         if (SUCCESS.equals(resultCode) && SUCCESS.equals(returnCode)) {
@@ -97,6 +99,9 @@ public class WxSmallPayCore {
             WxPayResponse wxPayResponse = new WxPayResponse();
             wxPayResponse.setStatus(Boolean.TRUE);
             wxPayResponse.setPrepayId(prepayId);
+            if (attach != null) {
+                wxPayResponse.setAttach(attach);
+            }
             return wxPayResponse;
         } else {
             String errCode = (String) result.get(ERRCODE);
@@ -105,6 +110,9 @@ public class WxSmallPayCore {
             wxPayResponse.setStatus(Boolean.FALSE);
             wxPayResponse.setErrCode(errCode);
             wxPayResponse.setErrCodeDes(errCodeDes);
+            if (attach != null) {
+                wxPayResponse.setAttach(attach);
+            }
             return wxPayResponse;
         }
     }
@@ -116,7 +124,7 @@ public class WxSmallPayCore {
      * @param prepayId 预支付交易ID
      * @return
      */
-    public String secondSignature(Long timestamp,String prepayId) {
+    public String secondSignature(Long timestamp, String prepayId) {
         SortedMap<Object, Object> responMap = new TreeMap<>();
         String nonceStr = WxPayUtils.CreateNoncestr(); //生成随机字符串
         responMap.put(WxSmallSecondSignEnum.APP_ID.getValue(), wxPayProperties.getWxAppid());

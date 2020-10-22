@@ -33,6 +33,20 @@ public class WxPayResponse implements Serializable {
      */
     private String errCodeDes;
 
+
+    /**
+     * 附加数据
+     */
+    private String attach;
+
+    public String getAttach() {
+        return attach;
+    }
+
+    public void setAttach(String attach) {
+        this.attach = attach;
+    }
+
     public Boolean getStatus() {
         return status;
     }
