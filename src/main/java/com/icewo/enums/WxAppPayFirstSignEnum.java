@@ -18,7 +18,7 @@ public enum WxAppPayFirstSignEnum {
     TOTAL_FEE("total_fee", "总金额(单位分)"),
     SPBILL_CREATE_IP("spbill_create_ip", "终端IP"),
     NOTIFY_URL("notify_url", "微信异步回调地址"),
-    TRADE_TYPE("trade_type", "交易类型(APP...)");
+    TRADE_TYPE("APP", "交易类型(APP...)");
 
 
     private String value;
