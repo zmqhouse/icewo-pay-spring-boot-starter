@@ -151,7 +151,7 @@ public class WxAppPayCore {
         responMap.put(WxAppPaySecondSignEnum.PACKAGE.getValue(), WxAppPaySecondSignEnum.PACKAGE.getDefaults());
         responMap.put(WxAppPaySecondSignEnum.PARTNER_ID.getValue(), wxPayProperties.getWxMchid());
         responMap.put(WxAppPaySecondSignEnum.PREPAY_ID.getValue(), prepayId);
-        responMap.put(WxAppPaySecondSignEnum.TIMESTAMP.getValue(), timestamp);
+        responMap.put(WxAppPaySecondSignEnum.TIMESTAMP.getValue(), String.valueOf(timestamp));
         //二次签名
         String secondSign = WxPayUtils.createSign(UTF, responMap, wxPayProperties.getWxMchkey());
         return secondSign;
